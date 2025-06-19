@@ -1,4 +1,4 @@
 Powered By Team:2025.LingnanCollege.Python.GroupTask.Group  
-GroupMember: 黄宇鹏、罗海纳、杨玉廷、华家浩  
+GroupMember: 1、2、3、4  
 Ide: Pycharm  
 
