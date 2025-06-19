@@ -11,17 +11,12 @@ class NewHomePage(ctk.CTkFrame):
         super().__init__(master, **kwargs)
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
-
-        # GitHub项目链接 - 请替换为您的实际GitHub链接
-        self.github_url = "https://github.com/yourusername/Quantitative_Trading"
-        # 项目文档路径 - 请替换为您的实际文档路径
-        self.doc_path = "项目介绍.docx"
-
+        self.url = "https://github.com/AshleyNY/Quantitative_Trading-master_neo"
+        self.doc_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "proj_info.docx")
+        self.members  = ['黄宇鹏','华家浩','罗海纳','杨玉廷']
         self.create_home_content()
 
     def create_home_content(self):
-        """创建主页内容"""
-        # 顶部标题
         title_label = ctk.CTkLabel(
             self,
             text="🏠 神秘股市量化交易系统",
@@ -29,13 +24,9 @@ class NewHomePage(ctk.CTkFrame):
             text_color=("gray10", "gray90")
         )
         title_label.grid(row=0, column=0, pady=(20, 10))
-
-        # 可滚动的主要内容区域
         self.scrollable_frame = ctk.CTkScrollableFrame(self, corner_radius=15)
         self.scrollable_frame.grid(row=1, column=0, padx=20, pady=(0, 20), sticky="nsew")
         self.scrollable_frame.grid_columnconfigure(0, weight=1)
-
-        # 创建各个部分
         self.create_welcome_section()
         self.create_action_buttons()
         self.create_team_section()
@@ -44,12 +35,10 @@ class NewHomePage(ctk.CTkFrame):
         self.create_usage_guide()
 
     def create_welcome_section(self):
-        """创建欢迎部分"""
         welcome_frame = ctk.CTkFrame(self.scrollable_frame, corner_radius=15)
         welcome_frame.grid(row=0, column=0, padx=15, pady=15, sticky="ew")
         welcome_frame.grid_columnconfigure(0, weight=1)
 
-        # 项目logo或图标区域
         icon_label = ctk.CTkLabel(
             welcome_frame,
             text="📊💰📈",
@@ -57,10 +46,9 @@ class NewHomePage(ctk.CTkFrame):
         )
         icon_label.grid(row=0, column=0, pady=(25, 15))
 
-        # 项目描述
         desc_label = ctk.CTkLabel(
             welcome_frame,
-            text="专业的Python股票量化交易回测平台\n支持多种策略回测，提供详细的数据分析和可视化功能",
+            text="Python股票量化交易回测平台\n支持多种策略回测",
             font=ctk.CTkFont(size=16),
             text_color=("gray20", "gray80"),
             justify="center"
@@ -68,20 +56,18 @@ class NewHomePage(ctk.CTkFrame):
         desc_label.grid(row=1, column=0, pady=(0, 25))
 
     def create_action_buttons(self):
-        """创建操作按钮部分"""
         buttons_frame = ctk.CTkFrame(self.scrollable_frame, corner_radius=15)
         buttons_frame.grid(row=1, column=0, padx=15, pady=15, sticky="ew")
         buttons_frame.grid_columnconfigure((0, 1, 2), weight=1)
 
         buttons_title = ctk.CTkLabel(
             buttons_frame,
-            text="🔗 项目资源",
+            text="🔗 关于项目",
             font=ctk.CTkFont(size=20, weight="bold"),
             text_color=("#1f6aa5", "#4a9eff")
         )
         buttons_title.grid(row=0, column=0, columnspan=3, pady=(20, 20))
 
-        # GitHub按钮
         github_btn = ctk.CTkButton(
             buttons_frame,
             text="🚀 访问 GitHub",
@@ -94,10 +80,9 @@ class NewHomePage(ctk.CTkFrame):
         )
         github_btn.grid(row=1, column=0, padx=15, pady=15, sticky="ew")
 
-        # 项目文档按钮
         doc_btn = ctk.CTkButton(
             buttons_frame,
-            text="📄 项目文档",
+            text="📄 介绍文档",
             font=ctk.CTkFont(size=14, weight="bold"),
             height=45,
             corner_radius=12,
@@ -107,7 +92,6 @@ class NewHomePage(ctk.CTkFrame):
         )
         doc_btn.grid(row=1, column=1, padx=15, pady=15, sticky="ew")
 
-        # 使用帮助按钮
         help_btn = ctk.CTkButton(
             buttons_frame,
             text="❓ 使用帮助",
@@ -121,14 +105,13 @@ class NewHomePage(ctk.CTkFrame):
         help_btn.grid(row=1, column=2, padx=15, pady=15, sticky="ew")
 
     def create_team_section(self):
-        """创建团队介绍部分"""
         team_frame = ctk.CTkFrame(self.scrollable_frame, corner_radius=15)
         team_frame.grid(row=2, column=0, padx=15, pady=15, sticky="ew")
         team_frame.grid_columnconfigure(0, weight=1)
 
         team_title = ctk.CTkLabel(
             team_frame,
-            text="👥 开发团队",
+            text="👥 开发小组",
             font=ctk.CTkFont(size=24, weight="bold"),
             text_color=("#1f6aa5", "#4a9eff")
         )
@@ -136,19 +119,17 @@ class NewHomePage(ctk.CTkFrame):
 
         team_desc = ctk.CTkLabel(
             team_frame,
-            text="由四位热爱金融科技的开发者共同打造\n我们致力于为投资者提供专业、易用的量化交易工具",
+            text="努力工作的开发者：",
             font=ctk.CTkFont(size=14),
             text_color=("gray30", "gray70"),
             justify="center"
         )
         team_desc.grid(row=1, column=0, pady=(0, 20))
 
-        # 团队成员展示区域
         members_container = ctk.CTkFrame(team_frame, fg_color="transparent")
         members_container.grid(row=2, column=0, pady=(0, 20))
         members_container.grid_columnconfigure((0, 1, 2, 3), weight=1)
 
-        # 团队成员卡片
         for i in range(4):
             member_card = ctk.CTkFrame(members_container, width=120, height=80, corner_radius=10)
             member_card.grid(row=0, column=i, padx=10, pady=10)
@@ -157,11 +138,10 @@ class NewHomePage(ctk.CTkFrame):
             member_icon = ctk.CTkLabel(member_card, text="👤", font=ctk.CTkFont(size=20))
             member_icon.pack(pady=(10, 5))
             
-            member_label = ctk.CTkLabel(member_card, text=f"成员 {i+1}", font=ctk.CTkFont(size=12))
+            member_label = ctk.CTkLabel(member_card, text=f"{self.members[i]}", font=ctk.CTkFont(size=12))
             member_label.pack()
 
     def create_features_section(self):
-        """创建功能特性部分"""
         features_frame = ctk.CTkFrame(self.scrollable_frame, corner_radius=15)
         features_frame.grid(row=3, column=0, padx=15, pady=15, sticky="ew")
         features_frame.grid_columnconfigure((0, 1), weight=1)
@@ -174,13 +154,10 @@ class NewHomePage(ctk.CTkFrame):
         )
         features_title.grid(row=0, column=0, columnspan=2, pady=(20, 20))
 
-        # 日K回测功能
         daily_card = ctk.CTkFrame(features_frame, corner_radius=12)
         daily_card.grid(row=1, column=0, padx=15, pady=15, sticky="nsew")
-
         daily_icon = ctk.CTkLabel(daily_card, text="📈", font=ctk.CTkFont(size=32))
         daily_icon.pack(pady=(15, 10))
-
         daily_title = ctk.CTkLabel(
             daily_card,
             text="日K线回测",
@@ -196,7 +173,6 @@ class NewHomePage(ctk.CTkFrame):
         )
         daily_features.pack(pady=(0, 15))
 
-        # 分时回测功能
         tick_card = ctk.CTkFrame(features_frame, corner_radius=12)
         tick_card.grid(row=1, column=1, padx=15, pady=15, sticky="nsew")
 
@@ -219,9 +195,9 @@ class NewHomePage(ctk.CTkFrame):
         tick_features.pack(pady=(0, 15))
 
     def create_tech_stack_section(self):
-        """创建技术栈部分"""
         tech_frame = ctk.CTkFrame(self.scrollable_frame, corner_radius=15)
         tech_frame.grid(row=4, column=0, padx=15, pady=15, sticky="ew")
+        tech_frame.grid_columnconfigure(0, weight=1)
 
         tech_title = ctk.CTkLabel(
             tech_frame,
@@ -243,9 +219,9 @@ class NewHomePage(ctk.CTkFrame):
 
 
     def create_usage_guide(self):
-        """创建使用指南部分"""
         guide_frame = ctk.CTkFrame(self.scrollable_frame, corner_radius=15)
         guide_frame.grid(row=5, column=0, padx=15, pady=15, sticky="ew")
+        guide_frame.grid_columnconfigure(0, weight=1)
 
         guide_title = ctk.CTkLabel(
             guide_frame,
@@ -268,12 +244,10 @@ class NewHomePage(ctk.CTkFrame):
                 guide_frame,
                 text=step,
                 font=ctk.CTkFont(size=13),
-                anchor="w",
-            justify="left"
+                justify="center"
             )
-            step_label.grid(row=i+1, column=0, pady=5, padx=20, sticky="w")
+            step_label.grid(row=i+1, column=0, pady=5, padx=20)
 
-        # 底部提示
         tip_label = ctk.CTkLabel(
             guide_frame,
             text="💡 提示：建议先从日K线回测开始体验系统功能",
@@ -284,36 +258,59 @@ class NewHomePage(ctk.CTkFrame):
         tip_label.grid(row=len(steps)+1, column=0, pady=(15, 20))
 
     def open_github(self):
-        """打开GitHub链接"""
         try:
-            webbrowser.open(self.github_url)
+            webbrowser.open(self.url)
         except Exception as e:
             self.show_error_dialog("GitHub链接", f"无法打开GitHub链接：{str(e)}")
 
     def open_documentation(self):
-        """打开项目文档"""
         try:
+            print(f"尝试打开文档文件：{self.doc_path}")
+            print(f"文件是否存在：{os.path.exists(self.doc_path)}")
+            print(f"当前工作目录：{os.getcwd()}")
+            
             if os.path.exists(self.doc_path):
                 if sys.platform.startswith('win'):
                     os.startfile(self.doc_path)
-                elif sys.platform.startswith('darwin'):  # macOS
+                elif sys.platform.startswith('darwin'):
                     subprocess.call(['open', self.doc_path])
-                else:  # Linux
+                else:
                     subprocess.call(['xdg-open', self.doc_path])
             else:
-                self.show_error_dialog("项目文档", f"文档文件不存在：{self.doc_path}\n请确认文件路径是否正确")
+                # 尝试几个可能的路径
+                possible_paths = [
+                    "proj_info.docx",
+                    "../proj_info.docx", 
+                    "../../proj_info.docx",
+                    os.path.join(os.path.dirname(__file__), "..", "..", "proj_info.docx")
+                ]
+                
+                found_path = None
+                for path in possible_paths:
+                    if os.path.exists(path):
+                        found_path = path
+                        break
+                
+                if found_path:
+                    self.doc_path = found_path
+                    if sys.platform.startswith('win'):
+                        os.startfile(self.doc_path)
+                    elif sys.platform.startswith('darwin'):
+                        subprocess.call(['open', self.doc_path])
+                    else:
+                        subprocess.call(['xdg-open', self.doc_path])
+                else:
+                    self.show_error_dialog("项目文档", f"无法找到文档文件\n尝试过的路径：\n" + "\n".join(possible_paths))
         except Exception as e:
             self.show_error_dialog("项目文档", f"无法打开文档文件：{str(e)}")
 
     def show_help(self):
-        """显示帮助信息"""
         help_window = ctk.CTkToplevel(self)
         help_window.title("使用帮助")
         help_window.geometry("600x400")
         help_window.transient(self)
         help_window.grab_set()
 
-        # 帮助内容
         help_text = """
 📖 系统使用帮助
 
@@ -359,7 +356,6 @@ class NewHomePage(ctk.CTkFrame):
         close_btn.pack(pady=(0, 20))
 
     def show_error_dialog(self, title, message):
-        """显示错误对话框"""
         error_window = ctk.CTkToplevel(self)
         error_window.title(title)
         error_window.geometry("400x200")
